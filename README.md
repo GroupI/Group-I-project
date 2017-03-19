@@ -1,4 +1,4 @@
 # Group-I-project
-shani is a queen yeaaaah
+shani
 
 walla lo mashu
