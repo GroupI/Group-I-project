@@ -1,21 +1,23 @@
 <?php header("Content-Type: text/html; charset=utf-8");?>
+
 <DOCTYPE html>
+
 <html>
     <head>
     <title>Currency Widget</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="currentScripts.js"></script>
-	<link rel="stylesheet" type="text/css" href="style.css" />
 	<meta charset="utf-8" />
 	<meta http-equiv="refresh" content="43200">
+	<link rel="stylesheet" type="text/css" href="style.css">
     </head>
-	<body>
 	
+	<body>
     <div id="container">
   
-  <select id="curr_index">
+    <select id="curr_index">
 
-                    <option value="0">Dollar USA</option>
+                    <option value="0" selected>Dollar USA</option>
                     <option value="1">Pound Great Britain</option>
                     <option value="2">Yen Japan</option>
                     <option value="3">Euro</option>
@@ -35,14 +37,12 @@
     <div id="result">
     </div>	
 
-	
 	<br> 
     <input type="button" value="Reset widget to default" onClick="window.location.reload()"> 
   
   
-
+  </div>
   </body> 
-  
-      
+   
   
 </html>
