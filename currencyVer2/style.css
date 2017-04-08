@@ -1,0 +1,24 @@
+#container{
+	width: 560px;
+	height: 250px;
+	border: 1px solid #000;
+	background-color: #2f2f2f;
+	overflow: hidden;
+	border-radius: 3px;
+	color: #fefdfb;
+	}
+
+	
+#sum{
+	color:yellow;
+	}
+	
+#informer{
+	color:orange;
+	}
+	
+	
+#resetBtn{
+	margin-top:10px;
+    margin-left:225px;
+	}
