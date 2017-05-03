@@ -47,5 +47,8 @@ class ToDoList extends Controller{
     {
         $this->model->xhrDeleteListing();
     }
-
+    function xhrDone()
+    {
+        $this->model->xhrDone();
+    }
 }

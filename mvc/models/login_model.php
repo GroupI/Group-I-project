@@ -8,8 +8,8 @@ class  Login_Model extends Model
 
     public function run()
     {
-        $username = $_POST['Username'];
-        $password= $_POST['Password'];
+        $username = $_REQUEST['username'];
+        $password= $_REQUEST['password'];
         $query = "SELECT id FROM users WHERE ";
         $query .= "username = '$username' and ";
         $query .= "Password = '$password' ";
@@ -22,10 +22,9 @@ class  Login_Model extends Model
             Session::set('loggedIn',true);
             Session::set('user',$row['id']);
             header('location: ../dashboard');
+            //echo true;
         } else {
-
-//            header('location: ../login');
-            echo "worng username/password";
+            echo false;
         }
     }
 }

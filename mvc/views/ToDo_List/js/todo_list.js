@@ -1,70 +1,185 @@
-function showList() {
-    if (window.XMLHttpRequest) {
-        xmlhttp=new XMLHttpRequest();
-    } else {
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+class ToDo {
+    constructor() {
+        this.text = null;
+        this.deadline = null;
     }
-    xmlhttp.onreadystatechange=function() {
-        if (this.readyState==4 && this.status==200) {
-            document.getElementById("listInserts").innerHTML=this.responseText;
+    showList() {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
-    }
-    xmlhttp.open("GET","http://localhost/project/mvc/ToDoList/xhrGetListings",true);
-    xmlhttp.send();
-}
 
-function insert(){
-    if (window.XMLHttpRequest) {
-        xmlhttp=new XMLHttpRequest();
-    } else {
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange=function() {
-        if (this.readyState==4 && this.status==200) {
-            document.getElementById("listInserts").innerHTML=this.responseText;
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var x = eval('(' + this.responseText + ')');
+                var tr, td;
+                for (var k in x) {
+                    tr = document.createElement('tr');
+                    td = tr.appendChild(document.createElement('td'));
+                    td.innerHTML = x[k]['ToDo'];
+                    td = tr.appendChild(document.createElement('td'));
+                    td.innerHTML = x[k]['Created'];
+                    td = tr.appendChild(document.createElement('td'));
+                    td.innerHTML = x[k]['Deadline'];
+                    td = tr.appendChild(document.createElement('td'));
+                    if (x[k]['Done'] == 0)
+                        td.innerHTML = '<button onclick="todo.Done(this,' + x[k]['id'] + ')">Done</button>';
+                    else
+                        td.innerHTML = '<td>complete</td>';
+                    td = tr.appendChild(document.createElement('td'));
+                    td.innerHTML = '<button onclick="todo.deleteRow(this,' + x[k]['id'] + ')" value="Delete"> X</button>';
+                    document.getElementById("listInserts").appendChild(tr);
+                }
+            }
         }
+        xmlhttp.open("GET", "ToDoList/xhrGetListings", true);
+        xmlhttp.send();
+
     }
-    xmlhttp.open("POST","http://localhost/project/mvc/ToDoList/xhrInsert",true);
-    xmlhttp.send();
+    insert(text, deadline) {
+        var xmlhttp;
+        this.text = text;
+        this.deadline = deadline;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var jsonData = JSON.parse(this.responseText);
+                return false;
+                window.location.reload();
+            }
+        }
+        xmlhttp.open("POST", "ToDoList/xhrInsert?t=" + this.text + "&d=" + this.deadline, true);
+        xmlhttp.send();
+
+    }
+    deleteRow(row, id) {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText) {
+                    var i = row.parentNode.parentNode.rowIndex;
+                    document.getElementById("listInserts").deleteRow(i);
+                }
+            }
+        }
+        xmlhttp.open("POST", "ToDoList/xhrDeleteListing?id=" + id, true);
+        xmlhttp.send();
+    }
+    Done(row, id) {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText) {
+                    window.location.reload();
+                }
+            }
+        }
+        xmlhttp.open("POST", "ToDoList/xhrDone?id=" + id, true);
+        xmlhttp.send();
+    }
 }
-// $(function () {
-//     $.get("ToDoList/xhrGetListings", function (data) {
-//         var jsonData = JSON.parse(data);
-//         for (var i = 0; i < jsonData.length; i++) {
-//             $('#listInserts').append('<tr>' + '<td>' + jsonData[i][2] + '</td>'
-//                 + '<td>' + jsonData[i][3] + '</td>'
-//                 + '<td>' + jsonData[i][4] + '</td>'
-//                 + '<td>' + jsonData[i][5] + '</td>'
-//                 + '<td class="del" rel="' + jsonData[i][0] + '" href="#"> X</td>'
-//                 + '</tr>');
-//
+let todo = new ToDo();
+
+
+
+// function showList() {
+//     if (window.XMLHttpRequest) {
+//         xmlhttp = new XMLHttpRequest();
+//     } else {
+//         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+//     }
+//     xmlhttp.onreadystatechange = function () {
+//         if (this.readyState == 4 && this.status == 200) {
+//             var x = eval('(' + this.responseText + ')');
+//             var tr, td;
+//             for (var k in x) {
+//                 tr = document.createElement('tr');
+//                 td = tr.appendChild(document.createElement('td'));
+//                 td.innerHTML = x[k]['ToDo'];
+//                 td = tr.appendChild(document.createElement('td'));
+//                 td.innerHTML = x[k]['Created'];
+//                 td = tr.appendChild(document.createElement('td'));
+//                 td.innerHTML = x[k]['Deadline'];
+//                 td = tr.appendChild(document.createElement('td'));
+//                 if (x[k]['Done']==0)
+//                     td.innerHTML = '<button onclick="Done(this,'+x[k]['id']+')">Done</button>';
+//                 else
+//                     td.innerHTML = '<td>complete</td>';
+//                 td = tr.appendChild(document.createElement('td'));
+//                 td.innerHTML ='<button onclick="deleteRow(this,'+x[k]['id']+')" value="Delete"> X</button>';
+//                 document.getElementById("listInserts").appendChild(tr);
+//             }
 //         }
+//     }
+//         xmlhttp.open("GET", "ToDoList/xhrGetListings", true);
+//         xmlhttp.send();
+// }
+// function insert(text, deadline) {
+//     if (window.XMLHttpRequest) {
+//         xmlhttp = new XMLHttpRequest();
+//     } else {
+//         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+//     }
+//     xmlhttp.onreadystatechange = function () {
+//         if (this.readyState == 4 && this.status == 200) {
 //
-//         //delete item
-//         $('#listInserts').on('click', '.del', function () {
-//             delItem = $(this);
-//             var id = $(this).attr('rel');
-//             $.post("ToDoList/xhrDeleteListing", {'id': id}, function (data) {
-//                 delItem.parent().remove();
-//             }, 'json');
-//             return false;
-//         });
-//
-//     })
-//     //insert
-//     $('#randomInsert').on('submit', function () {
-//         var data1=$(this).serialize();
-//         $.post('ToDoList/xhrGetListings',data1,function(data) {
-//             var jsonData = JSON.parse(data);
+//             var jsonData = JSON.parse(this.responseText);
 //             window.location.reload();
-//             $('#listInserts').append('<tr>'+ '<td>' + jsonData[0] + '</td>'
-//                 + '<td>'+ '0' +'</td>'
-//                 + '<td>'+ +'</td>'
-//                 + '<td>'+ jsonData[1]+'</td>'
-//                 + '<td class="del" rel="'+data+'" href="#"> X</td></tr>');
-//             document.getElementById("text").value = "";
+//         }
+//     }
+//     xmlhttp.open("POST", "ToDoList/xhrInsert?t=" + text + "&d=" + deadline, true);
+//     xmlhttp.send();
+// }
 //
-//         });
-//         return false;
-//     });
-// });
+// function deleteRow(row,id) {
+//     if (window.XMLHttpRequest) {
+//         xmlhttp = new XMLHttpRequest();
+//     } else {
+//         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+//     }
+//     xmlhttp.onreadystatechange = function () {
+//         if (this.readyState == 4 && this.status == 200) {
+//             if(this.responseText)
+//             {
+//                 var i = row.parentNode.parentNode.rowIndex;
+//                 document.getElementById("listInserts").deleteRow(i);
+//             }
+//         }
+//     }
+//     xmlhttp.open("POST", "ToDoList/xhrDeleteListing?id=" + id, true);
+//     xmlhttp.send();
+// }
+// function Done(row,id) {
+//     if (window.XMLHttpRequest) {
+//         xmlhttp = new XMLHttpRequest();
+//     } else {
+//         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+//     }
+//     xmlhttp.onreadystatechange = function () {
+//         if (this.readyState == 4 && this.status == 200) {
+//             if (this.responseText) {
+//                 window.location.reload();
+//             }
+//         }
+//     }
+//     xmlhttp.open("POST", "ToDoList/xhrDone?id=" + id, true);
+//     xmlhttp.send();
+//
+// }
+

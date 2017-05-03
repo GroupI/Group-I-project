@@ -18,13 +18,7 @@ class Dashboard extends Controller{
     public function index()
     {
         $this->db=new Database();
-
         $this->view->render('header', '', 'true');
-
-        $userID = Session::get('user');
-        $data = array();
-        $check = 0;
-
         $this->view->render('dashboard/index', '', 'true');
         $this->view->render('footer', '', 'true');
 
@@ -37,17 +31,4 @@ class Dashboard extends Controller{
         exit;
 
     }
-    function xhrInsert()
-    {
-        $this->model->xhrInsert();
-    }
-    function xhrGetListings()
-    {
-        $this->model->xhrGetListings();
-    }
-    function xhrDeleteListing()
-    {
-        $this->model->xhrDeleteListing();
-    }
-
 }

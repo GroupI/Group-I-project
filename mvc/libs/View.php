@@ -11,11 +11,11 @@ class View
     {
 
         if ($noIncludes == true) {
-            require 'views/' . $name . '.php';
+            require 'views/' . $name . '.html';
         } else {
-            require 'views/header.php';
-            require 'views/' . $name . '.php';
-            require 'views/footer.php';
+            require 'views/header.html';
+            require 'views/' . $name . '.html';
+            require 'views/footer.html';
 
         }
     }
