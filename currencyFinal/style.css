@@ -1,6 +1,6 @@
 #container{
-	width: 1000px;
-	height: 450px;
+	width: 500px;
+	height: 200px;
 	border: 1px solid #000;
 	background-color: #2f2f2f;
 	overflow: hidden;
@@ -9,7 +9,13 @@
 	}
 
 	
-#name{
-	font-size: 30px;
-	color: white;
+#sum{
+	color:yellow;
 	}
+	
+#informer{
+	color:orange;
+	margin-top:10px;
+	}
+	
+	
