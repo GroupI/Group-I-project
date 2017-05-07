@@ -1,23 +1,23 @@
-<?php header("Content-Type: text/html; charset=utf-8");?>
-
-<DOCTYPE html>
-
 <html>
-    <head>
-    <title>Currency Widget</title>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="currentScripts.js"></script>
-	<meta charset="utf-8" />
-	<meta http-equiv="refresh" content="43200">
-	<link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-	
-	<body>
-    <div id="container">
-  
-    <select id="curr_index">
+ <head>
+ <script src="currencyScripts.js"></script> 
+ <link rel="stylesheet" type="text/css" href="style.css">
+ </head>
+ <body>
 
-                    <option value="0" selected>Dollar USA</option>
+ <form id="container">
+ <p>
+ Convert to:
+ <select name="curr_to">
+ <option value="NIS">NIS</option>
+ </select>
+ </p>
+ <p>Insert quantity to convert: <input type="number" id="input"><br></p>
+ <p>
+ Select a wanted currency:
+ <select name="curr_from" onchange="showInfo(this.value)">
+                    <option value="">Insert wanted currency</option>
+                    <option value="0  ">Dollar USA</option>
                     <option value="1">Pound Great Britain</option>
                     <option value="2">Yen Japan</option>
                     <option value="3">Euro</option>
@@ -31,18 +31,14 @@
 		            <option value="11">Dinar Jordan</option>
 		            <option value="12">Pound Lebanon</option>
 		            <option value="13">Pound Egypt</option>
-  
-    </select>
-  
-    <div id="result">
-    </div>	
-
-	<br> 
-    <input type="button" value="Reset widget to default" onClick="window.location.reload()"> 
-  
-  
-  </div>
-  </body> 
+ </select>
+ </p>
    
-  
+ 
+ <p><div id="informer"><b>Insert currency quantity to get information</b></div></p>
+ <p><div id="sum"><b></b></div></p>
+ <p><div id="color"><b></b></div></p>
+
+ </form>
+ </body>
 </html>
