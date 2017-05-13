@@ -1,0 +1,24 @@
+html * {
+    font-size: 17px !important;
+    color: #ffe5f5 !important;
+    font-family: Arial Rounded MT Bold, serif !important;
+
+}
+
+a:link {
+    color: #b4393b !important;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: black !important;
+    text-decoration: underline;
+}
+
+div {
+    background-color: #7992d3;
+    width: 300px;
+    border-radius: 25px;
+    padding: 25px;
+    margin: 25px;
+}
