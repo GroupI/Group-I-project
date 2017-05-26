@@ -1,0 +1,7 @@
+form input, form select {
+    width: 70%;
+    margin: 5px 0 0 10px;
+    border: 1px solid #41ac25;
+    padding: 4px;
+
+}

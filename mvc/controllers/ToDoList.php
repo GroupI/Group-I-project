@@ -15,25 +15,7 @@ class ToDoList extends Controller{
     }
     public function index()
     {
-        $this->db=new Database();
-
-        $this->view->render('header', '', 'true');
-
-        $userID = Session::get('user');
-        $data = array();
-        $check = 0;
-
-        $this->view->render('ToDo_List/index', '', 'true');
-        $this->view->render('footer', '', 'true');
-
-
-    }
-    function logout()
-    {
-        Session::destroy();
-        header('location: ../login');
-        exit;
-
+        $this->view->render('ToDo_List/index');
     }
     function xhrInsert()
     {

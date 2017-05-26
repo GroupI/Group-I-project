@@ -19,16 +19,15 @@
 <div id="header">
     <br />
     <?php if(Session::get('loggedIn')==false): ?>
-        <a href="<?php echo URL?>index">Index</a>
-        <a href="<?php echo URL?>register">Register</a>
+        <a onclick="window.location.replace('/project/mvc/index');">Index</a>
+        <a onclick="window.location.replace('/project/mvc/register');">Register</a>
     <?php endif; ?>
     <?php if(Session::get('loggedIn')==true): ?>
-        <a href="<?php echo URL?>dashboard">Dashboard</a>
-        <a href="<?php echo URL?>dashboard">Settings</a>
-        <a href="<?php echo URL?>ToDoList">ToDo List</a>
-        <a href="<?php echo URL?>dashboard/logout">Logout</a>
+        <a onclick="window.location.replace('/project/mvc/dashboard');">Dashboard</a>
+        <!--<a onclick="window.location.replace('/project/mvc/dashboard');">Settings</a>-->
+        <a onclick="window.location.replace('/project/mvc/dashboard/logout')">Logout</a>
     <?php else: ?>
-    <a href="<?php echo URL?>login">Login</a>
+    <a onclick="window.location.replace('/project/mvc/login')">Login</a>
     <?php endif; ?>
 </div>
 <div id="content"/>

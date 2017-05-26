@@ -1,0 +1,20 @@
+#container{
+    width: 500px;
+    height: 200px;
+    border: 1px solid #000;
+    background-color: #2f2f2f;
+    overflow: hidden;
+    border-radius: 3px;
+    color: #fefdfb;
+}
+
+
+#sum{
+    color:yellow;
+}
+
+#informer{
+    color:orange;
+    margin-top:10px;
+}
+

@@ -13,7 +13,6 @@ class  Login_Model extends Model
         $query = "SELECT id FROM users WHERE ";
         $query .= "username = '$username' and ";
         $query .= "Password = '$password' ";
-
         $result = mysqli_query($this->db->get_connect(), $query);
         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 

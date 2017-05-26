@@ -17,18 +17,15 @@ class Dashboard extends Controller{
     }
     public function index()
     {
-        $this->db=new Database();
-        $this->view->render('header', '', 'true');
-        $this->view->render('dashboard/index', '', 'true');
-        $this->view->render('footer', '', 'true');
-
-
+        $this->view->render('dashboard/index');
     }
     function logout()
     {
         Session::destroy();
         header('location: ../login');
         exit;
-
+    }
+    function getusername(){
+        $this->model->getusername();
     }
 }

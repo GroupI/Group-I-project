@@ -15,8 +15,7 @@ body {
 
 #content {
     background: #fff;
-    padding: 20px;
-
+    padding: 50px;
 }
 
 #footer {
@@ -39,6 +38,7 @@ body {
 }
 
 #header a:hover {
+    cursor: pointer;
     background: #4b9b23
 }
 h1 {
@@ -75,13 +75,12 @@ form input, form select {
 }
 form input[type=submit] {
     width: auto;
-    margin: 10px 0 0 45px;
+    margin: 10px 0 0 800px;
 }
 
 form input[type=submit]:hover {
     cursor: pointer;
     background: #c0eda1;
 }
-
 
 form br {clear: left;}
