@@ -14,7 +14,7 @@ function showInfo(str) {
 	   color(obj.CHANGE);
      }
    }
-   xmlhttp.open("GET","client.php?q="+str,true);
+   xmlhttp.open("GET","clientWeather.php?q="+str,true);
    xmlhttp.send();
    }
   

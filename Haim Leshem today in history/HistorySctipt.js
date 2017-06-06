@@ -7,5 +7,5 @@ xmlhttp.onreadystatechange = function () {
     }
 
 };
-xmlhttp.open("GET", "client.php", true);
+xmlhttp.open("GET", "clientWeather.php", true);
 xmlhttp.send();

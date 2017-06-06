@@ -1,0 +1,43 @@
+#container{
+    width: 900px;
+    height: 400px;
+    border: 1px solid #000;
+    background-color: #2f2f2f;
+    overflow: hidden;
+    border-radius: 3px;
+    color: #fefdfb;
+}
+
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 900px;
+    height: 400px;
+    background-color: #2f2f2f;
+    overflow: hidden;
+    border-radius: 3px;
+    color: #fefdfb;
+}
+
+.flex-item {
+    background-color: #2f2f2f;
+    width: 300px;
+    height: 250px;
+    margin: 30px;
+    margin-top: 50px;
+}
+
+.circle{
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 600px;
+    left: 10px;
+    transition: 15s;
+}
+
+
+
+

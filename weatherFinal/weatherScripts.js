@@ -30,7 +30,7 @@ function showWeather(weatherIndex){
 	         document.getElementById("min_temperature3").innerHTML="Min Temperature : "+obj.MinTemp3+"°C";
 			 }
 		 }
-		 xmlhttp.open("GET","client.php?q="+weatherIndex,true);
+		 xmlhttp.open("GET","clientWeather.php?q="+weatherIndex,true);
 		 xmlhttp.send();
 		 
 		 }

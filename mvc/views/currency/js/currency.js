@@ -15,7 +15,7 @@ function showInfo(str) {
         }
     }
 
-    xmlhttp.open("GET","currency/passJson?q="+str,true);
+    xmlhttp.open("GET","clientCurrency?q="+str,true);
     xmlhttp.send();
 }
 
